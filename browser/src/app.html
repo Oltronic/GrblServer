@@ -94,7 +94,7 @@
 		}
 
 		paper-tabs {
-			background-color: #00bcd4;
+			background-color: #d32e2f;
 			color: #fff;
 		}
 
@@ -186,7 +186,7 @@
 			text-align: left;
 			font-size: 12px;
 			color: #fff;
-			background-color: #00bcd4;
+			background-color: #d32e2f;
 			font-weight: normal;
 		}
 
@@ -510,40 +510,40 @@
 			<div class="nav" drawer style="height: 100%; overflow-y: auto">
 				<div class="menu-title" style="padding: 0 16px">
 					<h1>
-						<img src="assets/icon-192.png" style="width: 1em; height: 1em; vertical-align: text-top"/>
-						GrblServer</h1>
-					<p style="color: #999">
-						Last alarm:<br/><span>{{lastAlarm}}</span>
+						<img src="http://oltronic.com/wp-content/uploads/2016/11/LogoMaterial.png" style="width: 3em; height: 3em; padding-left: 40px;"/>
+					</h1>
+					<p style="color: #999; width: 4em; height: 4em; vertical-align: text-top">
+						Alarm:<br/><span>{{lastAlarm}}</span>
 					</p>
 				</div>
 				<paper-menu selected="{{selectedMenu}}">
 					<paper-submenu opened>
-						<paper-item class="menu-trigger">Controls</paper-item>
+						<paper-item class="menu-trigger">Kontrole</paper-item>
 						<paper-menu class="menu-content" selected="{{selectedSubMenu}}">
-							<paper-item>Dashboard</paper-item>
-							<paper-item>Jogging</paper-item>
-							<paper-item>Command</paper-item>
-							<paper-item>Preview</paper-item>
+							<paper-item>Kontrolna ploča</paper-item>
+							<paper-item>Upravljanje</paper-item>
+							<paper-item>Komande</paper-item>
+							<paper-item>Pregled</paper-item>
 						</paper-menu>
 					</paper-submenu>
-					<paper-item>Settings</paper-item>
+					<paper-item>Opcije</paper-item>
 				</paper-menu>
 				<div style="color: #bdbdbd; padding: 8px 16px; border-top: 1px solid #ddd">
 					<table class="versions">
 						<tr>
-							<th colspan="2">Versions</th>
+							<th colspan="2">Status</th>
 						</tr>
 						<tr>
-							<th>grbl</th>
-							<td>{{conditional(grblVersion, grblVersion, "(unconnected)")}}</td>
+							<th>mašina</th>
+							<td>{{conditional(grblVersion, grblVersion, "(nepoznata)")}}</td>
 						</tr>
 						<tr>
 							<th>server</th>
-							<td>{{conditional(serverVersion, serverVersion, "(unconnected)")}}</td>
+							<td>{{conditional(serverVersion, serverVersion, "(nepoznat)")}}</td>
 						</tr>
 						<tr>
-							<th>client</th>
-							<td>{{conditional(clientVersion, clientVersion, "(unknown)")}}</td>
+							<th>kljent</th>
+							<td>{{conditional(clientVersion, clientVersion, "(nepoznat)")}}</td>
 						</tr>
 					</table>
 				</div>
@@ -563,13 +563,13 @@
 					<template is="dom-if" if="{{equals(status.state, 'Hold')}}">
 						<paper-button noink class="action-resume" on-tap="commandResume">
 							<iron-icon icon="av:play-arrow"></iron-icon>
-							Resume
+							Nastavi
 						</paper-button>
 					</template>
 					<template is="dom-if" if="{{!equals(status.state, 'Hold')}}">
 						<paper-button noink class="action-pause" on-tap="commandPause">
 							<iron-icon icon="av:pause"></iron-icon>
-							Pause
+							Pauza
 						</paper-button>
 					</template>
 
@@ -587,7 +587,7 @@
 							<div class="coords-container" disabled$="{{equals(status.state, 'Unknown')}}">
 								<table class="coords">
 									<tr>
-										<th colspan="3" class="heading">Work</th>
+										<th colspan="3" class="heading">Radne koordinate</th>
 									</tr>
 
 									<tr>
@@ -607,7 +607,7 @@
 									</tr>
 
 									<tr>
-										<th colspan="3" class="heading">Machine</th>
+										<th colspan="3" class="heading">Mašinske koordinate</th>
 									</tr>
 
 									<tr class="machine">
@@ -656,11 +656,11 @@
 							<div class="preset-positions">
 								<paper-button noink on-tap="commandHoming" disabled="{{isBatchMode}}">
 									<iron-icon icon="icons:home"></iron-icon>
-									Homing
+									Kalibracija
 								</paper-button>
 								<paper-button noink on-tap="commandReturn" disabled="{{isBatchMode}}">
 									<iron-icon icon="hardware:keyboard-return"></iron-icon>
-									Return to zero
+									Vrati na nulu
 								</paper-button>
 								<template is="dom-repeat" items="{{settings.macros}}">
 									<paper-button on-tap="settingsDoMacro" data-item$="{{item.id}}" disabled="{{isBatchMode}}">
@@ -675,17 +675,17 @@
 							<paper-tabs selected="{{commandTab}}" noink no-slide>
 								<paper-tab>
 									<iron-icon icon="hardware:keyboard"></iron-icon>
-									Command Line
+									Komande
 								</paper-tab>
 								<paper-tab>
 									<iron-icon icon="icons:file-upload"></iron-icon>
-									Upload File
+									Učitaj file
 								</paper-tab>
 							</paper-tabs>
 							<iron-pages class="flex layout vertical" selected="{{commandTab}}">
 								<div class="flex layout vertical" style="height: 100%">
 									<div style="padding: 0 16px">
-										<paper-input disabled="{{isBatchMode}}" label="Command" placeholder="G28" on-keydown="commandAny"></paper-input>
+										<paper-input disabled="{{isBatchMode}}" label="Komanda" placeholder="G28" on-keydown="commandAny"></paper-input>
 									</div>
 									<div class="flex" style="position: relative">
 										<div style="position: absolute; top: 0; left: 16px; right: 16px; bottom: 0; overflow-y: scroll">
@@ -761,9 +761,9 @@
 
 					<div id="settingsContent" class="fit layout vertical" style="background: #fff; padding: 0 16px">
 						<paper-tabs class="" selected="{{settingsTab}}" noink no-slide style="margin: 0 -16px">
-							<paper-tab>Macros</paper-tab>
-							<paper-tab>Connection</paper-tab>
-							<paper-tab>Grbl</paper-tab>
+							<paper-tab>Makro</paper-tab>
+							<paper-tab>Konekcija</paper-tab>
+							<paper-tab>Mašina</paper-tab>
 						</paper-tabs>
 						<div class="body flex relative">
 							<iron-pages class="fit flex layout vertical relative" selected="{{settingsTab}}">
@@ -771,7 +771,7 @@
 								<div class="macros flex layout horizontal fit">
 									<div class="list flex">
 										<div class="layout horizontal">
-											<h3 class="flex-3"> Current List </h3>
+											<h3 class="flex-3">Lista makroa</h3>
 											<div class="flex-1" style="text-align: right; padding: 5px">
 												<paper-icon-button icon="icons:add-box" on-tap="settingsAddMacro"></paper-icon-button>
 											</div>
@@ -789,14 +789,14 @@
 									<div class="edit flex">
 										<template is="dom-if" if="{{currentEdittingMacro}}">
 											<div class="layout horizontal">
-												<h3 class="flex">Edit</h3>
+												<h3 class="flex">Uredi</h3>
 												<div class="flex" style="text-align: right; padding: 5px">
 													<paper-icon-button icon="icons:cancel" on-tap="settingsRemoveMacro"></paper-icon-button>
 												</div>
 											</div>
-											<paper-input label="Label" placeholder="" value="{{currentEdittingMacro.label}}"></paper-input>
-											<paper-textarea label="Code" placeholder="" rows="3" value="{{currentEdittingMacro.gcode}}"></paper-textarea>
-											<paper-button on-tap="settingsSaveMacro">Save</paper-button>
+											<paper-input label="Naziv" placeholder="" value="{{currentEdittingMacro.label}}"></paper-input>
+											<paper-textarea label="Kod" placeholder="" rows="3" value="{{currentEdittingMacro.gcode}}"></paper-textarea>
+											<paper-button on-tap="settingsSaveMacro">Spasi</paper-button>
 										</template>
 									</div>
 								</div>
@@ -804,40 +804,40 @@
 
 								<!-- Connection -->
 								<div class="flex vertical">
-									<h3>Grbl Server</h3>
+									<h3>Server</h3>
 									<paper-input label="Server Address" placeholder="ws://" value="{{settings.grblServer.address}}" disabled="{{settings.grblServer.addressAuto}}"></paper-input>
-									<paper-checkbox checked="{{settings.grblServer.addressAuto}}">Automatic</paper-checkbox>
+									<paper-checkbox checked="{{settings.grblServer.addressAuto}}">Automatski</paper-checkbox>
 								</div>
 								<!-- /Connection -->
 
 								<!-- Grbl -->
 								<div class="flex vertical grbl-settings">
-									<h3>Edit Grbl Settings</h3>
+									<h3>Dimenzije mašine</h3>
 
 									<div class="layout horizontal wrap">
 										<section>
-											<h4>Max Travels</h4>
+											<h4>Max hod</h4>
 											<paper-input-container always-float-label>
-												<label>X Max Travel</label>
+												<label>Max hod po X osi</label>
 												<input is="iron-input" bind-value="{{settings.grbl.$130}}"/>
 												<div suffix>mm</div>
 											</paper-input-container>
 											<paper-input-container always-float-label>
-												<label>Y Max Travel</label>
+												<label>Max hod po Y osi</label>
 												<input is="iron-input" bind-value="{{settings.grbl.$131}}"/>
 												<div suffix>mm</div>
 											</paper-input-container>
 											<paper-input-container always-float-label>
-												<label>Z Max Travel</label>
+												<label>Max hod po Z osi</label>
 												<input is="iron-input" bind-value="{{settings.grbl.$132}}"/>
 												<div suffix>mm</div>
 											</paper-input-container>
 										</section>
 
 										<section>
-											<h4>Limits</h4>
-											<paper-checkbox checked="{{settings.grbl.$20}}"> Soft Limits</paper-checkbox>
-											<paper-checkbox checked="{{settings.grbl.$21}}"> Hard Limits</paper-checkbox>
+											<h4>Granični prekidači</h4>
+											<paper-checkbox checked="{{settings.grbl.$20}}">Softverski</paper-checkbox>
+											<paper-checkbox checked="{{settings.grbl.$21}}">Hardverski</paper-checkbox>
 										</section>
 
 										<div class="flex"></div>
@@ -845,7 +845,7 @@
 
 									<div class="layout horizontal wrap">
 										<div>
-											<paper-button on-tap="settingsSaveGrblConfig">Save</paper-button>
+											<paper-button on-tap="settingsSaveGrblConfig">Spasi</paper-button>
 										</div>
 									
 										<div class="flex" style="text-align: right">
@@ -889,11 +889,11 @@
 			</div>
 			<paper-button noink on-tap="commandUnlock" dialog-confirm>
 				<iron-icon icon="icons:lock-open"></iron-icon>
-				Unlock
+				Otključaj
 			</paper-button>
 			<paper-button noink on-tap="commandHoming" dialog-confirm>
 				<iron-icon icon="icons:home"></iron-icon>
-				Homing
+				Kalibracija
 			</paper-button>
 		</paper-dialog>
 
